@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+	<title>Document</title>
+
+	<link rel="stylesheet" href="styles.css">
+	<script>
+		function displayContent() {
+
+			var date = document.getElementById("date").value;
+			var otpDate =  date;
+
+			var feeling = document.getElementById("feeling").value;
+			var otpFeeling = "Feeling: " + feeling;
+
+			var content = document.getElementById("content").value;
+			var otpContent = "<br>" + content;
+
+			document.getElementById("otpDate").innerHTML = otpDate;
+			document.getElementById("otpFeeling").innerHTML = otpFeeling;
+			document.getElementById("otpContent").innerHTML = otpContent;
+
+			return false;
+		}
+	</script>
+</head>
+
+<body>
+	<h1 id="diary-heading">DIARY OF THE DECADE</h1>
+	<div class="line"></div>
+
+	<div class="grid-wrapper">
+		<div class="container-input">
+			<form onsubmit="return displayContent()">
+
+				<label for="date">Date: </label><br>
+				<input class="date-input" type="date" id="date" name="date" required><br><br>
+
+				<label for="feeling">What are you feeling: </label><br>
+				<input class="feeling-input" type="text" id="feeling" name="feeling" required><br><br>
+
+				<label for="content">Diary Content: : </label><br>
+				<textarea class="diary-input" type="text" id="content" name="content" required></textarea><br><br>
+
+				<input class="button" type="submit" value="Submit">
+			</form>
+		</div>
+
+
+		<div class="container-output">
+			<p id="otpDate"></p>
+			<p id="otpFeeling"></p>
+			<p id="otpContent"></p>
+		</div>
+	</div>
+
+</body>
+
+</html>

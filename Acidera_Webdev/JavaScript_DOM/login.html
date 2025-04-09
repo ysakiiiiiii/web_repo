@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Login Form</title>
+   <script>
+      function validateLogin(event) {
+         event.preventDefault(); // Prevent form submission and page reload
+
+         // Retrieve user input values for username and password
+         var username = document.getElementById("username").value;
+         var password = document.getElementById("password").value;
+
+         // List of valid usernames and their corresponding passwords
+         var users = {
+            "admin": "1234",
+            "GalaxyDestroyerOfTheWholeUniverse": "password",
+            "Lucky": "scam123"
+         };
+
+         // Check if the entered username exists in the users object
+         if (username in users) {
+            // Verify if the entered password matches the stored password
+            if (users[username] === password) {
+               alert("Welcome, " + username + "!"); // Successful login message
+            } else {
+               alert("Wrong password!"); // Incorrect password warning
+            }
+         } else {
+            alert("Username not found!"); // Username does not exist warning
+         }
+      }
+
+   </script>
+</head>
+
+<body>
+   <!-- Form for log in -->
+   <form onsubmit="validateLogin(event)">
+      Username:
+      <!-- Input field for entering username -->
+      <input type="text" id="username" name="username"><br>
+      Password:
+
+      <!-- Input field for entering password -->
+      <input type="password" id="password" name="password"><br>
+
+      <!-- Submit button to trigger validation -->
+      <input type="submit" value="Log-in">
+   </form>
+
+</body>
+
+</html>
+

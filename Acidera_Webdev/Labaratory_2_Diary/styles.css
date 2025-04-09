@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+* {
+  font-family: "Poppins", serif;
+}
+
+body {
+  background-image: url("backg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Poppins", serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 0;
+}
+
+.line {
+    width: 80%;
+    border-top: 2px solid #333; /* Line thickness & color */
+    margin: 20px auto;
+  }
+
+.grid-wrapper {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 2fr;
+}
+
+form {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+  backdrop-filter: blur(10px);
+}
+
+label,
+input {
+  width: 100%;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 320px;
+  width: 390px;
+  resize: none;
+}
+
+input[type="submit"] {
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background: #218838;
+}
+
+.container-output {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 2%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container-output > #otpDate,
+#otpFeeling {
+  margin: 0px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+#otpDate {
+  font-weight: 800;
+}
+#otpFeeling {
+  font-weight: 500;
+}
+
+#otpContent {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}

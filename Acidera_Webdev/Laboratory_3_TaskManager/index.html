@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css"> <!-- External CSS file -->
+</head>
+
+<body>
+
+    <h1>To-Do List</h1>
+
+    <div id="container">
+        <!-- Task Input Form -->
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="Enter a task">
+            <input type="submit" value="Add Task">
+        </form>
+
+        <!-- Task List -->
+        <ol id="task-list"></ol>
+    </div>
+
+    <script>
+        let tasks = []; // Stores the list of tasks
+
+        // When the form is submitted, add the task
+        document.getElementById("task-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevents page from reloading
+            addTask();
+        });
+
+        function addTask() {
+            let task_input = document.getElementById("task-input");
+            let task = task_input.value.trim(); // Remove spaces before and after
+
+            if (task === "") {  // Prevent adding empty tasks
+                alert("Task cannot be empty!");
+                return;
+            }
+
+            tasks.push(task); // Add task to array
+            task_input.value = ""; // Clear input field after adding
+            renderTasks(); // Update the task list on screen
+        }
+
+        function renderTasks() {
+            const taskList = document.getElementById("task-list");
+            taskList.innerHTML = ""; // Clear the list before re-rendering
+
+            tasks.forEach((task, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `${task} 
+                    <button onclick="removeTask(${index})">X</button>`;
+                taskList.appendChild(li);
+            });
+        }
+
+        function removeTask(index) {
+            let confirmDelete = confirm("Are you sure you want to delete this task?");
+            if (confirmDelete) {
+                tasks.splice(index, 1); // Remove the task at the given index
+                renderTasks(); // Refresh the list
+            }
+        }
+    </script>
+
+</body>
+
+</html>

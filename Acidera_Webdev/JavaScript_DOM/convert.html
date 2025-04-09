@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Length Conversion</title>
+    <script>
+        function convertLength(event) {
+            event.preventDefault(); // Prevents form submission from reloading the page
+
+            // Get the length input value, remove extra spaces, and store it as a string
+            let inputValue = document.getElementById("inputLength").value.trim();
+
+            // Validate the input: If it's empty or not a finite number, alert the user and stop execution
+            // To handle inputs like: (123 asd, 323       @, etc)
+            if (!inputValue || !isFinite(inputValue)) {
+                alert("Please enter a valid numeric value.");
+                return;
+            }
+
+            // Convert the validated input into a floating-point number for calculation
+            let length = parseFloat(inputValue);
+            // Get the unit for the input and ouput of the length to be converted
+            let fromUnit = document.getElementById("unitInput").value;
+            let toUnit = document.getElementById("unitOutput").value;
+
+            // Conversion factors relative to meters.
+            // This means every length is first converted to meters before converting to the target unit.   
+            let conversion = { meters: 1, kilometers: 0.001, millimeters: 1000 };
+
+            // Convert the input length from the given unit to the target unit.
+            // Formula explanation:
+            // 1. conversion[toUnit] / conversion[fromUnit] -> Computes the conversion factor between the two units.
+            // 2. length * (conversion[toUnit] / conversion[fromUnit]) -> Converts the input length using the computed factor.
+
+            let result = length * (conversion[toUnit] / conversion[fromUnit]);
+
+            // Format the result using toLocaleString() to improve readability 
+            // by adding commas as thousand separators (e.g., 1,000 instead of 1000).
+            let formattedResult = result.toPrecision(4).toLocaleString();
+
+            // Display the converted value in the HTML element with id "result"
+            document.getElementById("result").innerHTML = `Converted Value: ${formattedResult} ${toUnit}`;
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Form for length conversion -->
+    <form onsubmit="convertLength(event)">
+        <h3>Length Conversion</h3>
+
+        From:
+        <!-- Input field for entering the length value -->
+        <input type="text" id="inputLength" required>
+
+        <!-- Dropdown for selecting the unit to convert from -->
+        <select id="unitInput">
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+            <option value="millimeters">Millimeters</option>
+        </select>
+        <br>
+
+        To:
+        <!-- Dropdown for selecting the unit to convert to -->
+        <select id="unitOutput">
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+            <option value="millimeters">Millimeters</option>
+        </select>
+
+        <!-- Submit button to trigger conversion -->
+        <button type="submit">Convert</button>
+    </form>
+
+    <!-- Placeholder that displays the converted result -->
+    <h3 id="result"></h3>
+</body>
+
+</html>
